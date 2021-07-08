@@ -1,0 +1,132 @@
+<mat-card *ngIf="view == 'create'">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form (submit)="onSignup(signupForm)" #signupForm="ngForm" *ngIf="!isLoading">
+  <mat-form-field>
+    <input matInput
+    type="text"
+    name = 'firstName'
+    ngModel
+    #firstName="ngModel"
+    placeholder="First Name"
+    required
+    firstName
+    >
+    <mat-error *ngIf="firstName.invalid">Please Enter First name</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput
+    type="text"
+    name = 'lastName'
+    ngModel
+    #lastName="ngModel"
+    placeholder="Last Name"
+    required
+    lastName
+    >
+    <mat-error *ngIf="lastName.invalid">Please enter last name</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput
+    type="text"
+    name = 'address'
+    ngModel
+    #address="ngModel"
+    placeholder="Address"
+    required
+    address
+    >
+    <mat-error *ngIf="address.invalid">Please Enter Address</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput
+    type="number"
+    name = 'mobileNo'
+    ngModel
+    #mobileNo="ngModel"
+    placeholder="Mobile No."
+    required
+    mobileNo
+    >
+    <mat-error *ngIf="mobileNo.invalid">Please Enter Valid mobile no.</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput
+    type="email"
+    name = 'email'
+    ngModel
+    #email="ngModel"
+    placeholder="E-mail"
+    required
+    email
+    >
+    <mat-error *ngIf="email.invalid">Please Enter Valid mobile no.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+    matInput
+    placeholder="Password"
+    type="password"
+    name="password"
+    #passwordInput = 'ngModel'
+    ngModel
+    required
+    >
+    <mat-error *ngIf="passwordInput.invalid">Please Enter valid Password</mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary"
+  type="submit">Signup</button>
+</form>
+</mat-card>
+
+<mat-card *ngIf="view == 'edit'">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form [formGroup]="form" (submit)="onSaveUser(form)" *ngIf="!isLoading">
+  <mat-form-field>
+    <input matInput
+    type="text"
+    name = 'firstName'
+    placeholder="First Name"
+    formControlName="firstName"
+    >
+    <mat-error *ngIf="form.get('firstName').invalid">Please Enter First name</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput
+    type="text"
+    name = 'lastName'
+    placeholder="Last Name"
+    formControlName="lastName"
+    >
+    <mat-error *ngIf="form.get('lastName').invalid">Please enter last name</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput
+    type="text"
+    name = 'address'
+    placeholder="Address"
+    formControlName="address"
+    >
+    <mat-error *ngIf="form.get('address').invalid">Please Enter Address</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput
+    type="number"
+    name = 'mobileNo'
+    placeholder="Mobile No."
+    formControlName="mobileNo"
+    >
+    <mat-error *ngIf="form.get('mobileNo').invalid">Please Enter Valid mobile no.</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput
+    type="email"
+    name = 'email'
+    placeholder="E-mail"
+    formControlName="email"
+    >
+  </mat-form-field>
+  <button mat-raised-button color="primary"
+  type="submit">Save</button>
+</form>
+</mat-card>

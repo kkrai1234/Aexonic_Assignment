@@ -1,0 +1,18 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-accordion multi ="true" *ngIf="allUsers.fetchedUser.length >0 && !isLoading">
+  <mat-expansion-panel *ngFor = "let users of allUsers.fetchedUser">
+    <mat-expansion-panel-header>
+      {{users.email}}
+    </mat-expansion-panel-header>
+    <p><strong>First Name: &nbsp;</strong> {{ users.firstName}}&nbsp;<strong>Last Name:&nbsp;</strong> {{users.lastName}}</p>
+    <br>
+    <p>Mobile No: {{users.mobileNo}}</p>
+    <br>
+    <p>Address: {{users.address}}</p>
+     <mat-action-row *ngIf="userIsAuthenticated">
+       <a mat-button color='primary' [routerLink]="['/editUser', users._id]" routerLinkActive="router-link-active" >EDIT</a>
+     </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<mat-paginator *ngIf="allUsers.fetchedUser.length >0" [length]="totalUsers" [pageSize]="usersPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangePage($event)"></mat-paginator>
+<p class="info-text mat-body-1" *ngIf="allUsers.length ==0 && !isLoading">No Users Yet.</p>
